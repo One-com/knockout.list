@@ -10,10 +10,9 @@
     };
 
     FakeDataSource.prototype.get = function (index, callback) {
-        var that = this;
         setTimeout(function () {
             callback("Item " + index, index);
-        }, 10);
+        }, 500);
     };
 
     FakeDataSource.prototype.length = function () {
