@@ -1,0 +1,13 @@
+body {
+    padding: 40px;
+}
+.list {
+    height: 200px;
+    width: 400px;
+    border: thin solid #333;
+}
+.list .tile {
+    border-bottom: thin solid lightgray;
+    font-size: 16px;
+    padding: 12px 24px;
+}

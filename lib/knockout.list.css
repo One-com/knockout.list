@@ -1,0 +1,10 @@
+.knockout-list {
+    overflow: auto;
+    position: relative;
+}
+
+.knockout-list > .tile {
+    position: absolute;
+    left: 0;
+    right: 0;
+}

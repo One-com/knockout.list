@@ -1,0 +1,15 @@
+{
+    "name": "knockout.list",
+    "version": "0.0.1",
+    "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
+    "dependencies": {},
+    "private": true,
+    "scripts": {
+        "test": "./node_modules/.bin/mocha-phantomjs test/index.html"
+    },
+    "devDependencies": {
+        "phantomjs": "=0.0.8",
+        "mocha-phantomjs": "=2.0.0",
+        "expect.js": "=0.2.0"
+    }
+}
