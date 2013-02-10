@@ -12,7 +12,7 @@
     FakeDataSource.prototype.get = function (index, callback) {
         setTimeout(function () {
             callback("Item " + index, index);
-        }, 500);
+        }, 100);
     };
 
     FakeDataSource.prototype.length = function () {
