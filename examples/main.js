@@ -4,15 +4,11 @@
     }
 
     FakeDataSource.prototype.update = function (callback) {
-        setTimeout(function () {
-            callback();
-        }, 400);
+        callback();
     };
 
     FakeDataSource.prototype.get = function (index, callback) {
-        setTimeout(function () {
-            callback("Item " + index, index);
-        }, 100);
+        callback("Item " + index, index);
     };
 
     FakeDataSource.prototype.length = function () {
