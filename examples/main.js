@@ -1,21 +1,16 @@
 /*global ko*/
 (function () {
-    function FakeDataSource() {
-    }
-
-    FakeDataSource.prototype.update = function (callback) {
-        callback();
+    var dataSource = {
+        update: function (callback) {
+            callback();
+        },
+        get: function (index, callback) {
+            callback("Item " + index, index);
+        },
+        length: function () {
+            return 500000;
+        }
     };
-
-    FakeDataSource.prototype.get = function (index, callback) {
-        callback("Item " + index, index);
-    };
-
-    FakeDataSource.prototype.length = function () {
-        return 500000;
-    };
-
-    var dataSource = new FakeDataSource();
     
     var viewModel = {
         dataSource: dataSource
