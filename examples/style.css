@@ -1,9 +1,11 @@
 body {
-    padding: 40px;
 }
 .list {
-    height: 200px;
-    width: 400px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
     border: thin solid #333;
 }
 .list .tile {
