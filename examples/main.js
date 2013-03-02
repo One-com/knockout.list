@@ -1,19 +1,29 @@
 /*global ko*/
 (function () {
+    var itemCount = ko.observable(5000);
     var dataSource = {
         update: function (callback) {
-            callback();
+            if (callback) {
+                this.callback = callback;
+            } else {
+                this.callback();
+            }
         },
         get: function (index, callback) {
             callback("Item " + index, index);
         },
         length: function () {
-            return 500000;
+            return itemCount();
         }
     };
     
     var viewModel = {
-        dataSource: dataSource
+        itemCount: itemCount,
+        dataSource: dataSource,
+        update: function () {
+            dataSource.update();
+        }
     };
     ko.applyBindings(viewModel, document.getElementById('application'));
+    dataSource.update();
 }());
