@@ -1,4 +1,4 @@
-/*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon*/
+/*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $*/
 var itemHeight = 30;
 var listHeight = itemHeight * 3;
 describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px', function () {
@@ -78,7 +78,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             var model;
             var numberOfItems = 100;
             beforeEach(function () {
-                model = { items: ko.observableArray(itemFactory.create(numberOfItems)) };
+                model = {
+                    items: ko.observableArray(itemFactory.create(numberOfItems)),
+                    visibleIndex: ko.observable(0)
+                };
                 element = createTestElement({
                     listHeight: listHeight,
                     itemHeight: itemHeight
@@ -124,10 +127,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 beforeEach(function () {
                     scrollTo(element, 20 * itemHeight);
                     scrollTo(element, 10 * itemHeight);
+                    clock.tick(110);
                 });
 
                 it('has tiles item7 to item16', function () {
-                    clock.tick(110);
                     expect(element, 'to only have tiles', [
                         '#item7', '#item8', '#item9',
                         '#item10', '#item11', '#item12',
@@ -139,13 +142,38 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             describe('and the viewport is scrolled to the bottom', function () {
                 beforeEach(function () {
                     scrollToBottom(element);
+                    clock.tick(110);
                 });
 
                 it('has tiles item94 to item99', function () {
-                    clock.tick(110);
                     expect(element, 'to only have tiles', [
-                        '#item94', '#item95', '#item96', '#item97', '#item98', '#item99'
+                        '#item94', '#item95', '#item96',
+                        '#item97', '#item98', '#item99'
                     ]);
+                });
+            });
+
+            describe('and a new item is added to the bottom of the list that is outside of the render tiles', function () {
+                beforeEach(function () {
+                    model.items.push(itemFactory());
+                    model.visibleIndex(model.items().length - 1);
+                    $(element).trigger('scroll');
+                    clock.tick(110);
+                });
+
+                it('has tiles item95 to item100', function () {
+                    expect(element, 'to only have tiles', [
+                        '#item95', '#item96', '#item97',
+                        '#item98', '#item99', '#item100'
+                    ]);
+                });
+
+                it('has scroll height equal to container', function () {
+                    expect(element, 'to have scroll height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has content height', function () {
+                    expect(element, 'to have content height', (numberOfItems + 1) * itemHeight);
                 });
             });
         });

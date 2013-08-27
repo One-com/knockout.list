@@ -5,7 +5,7 @@ function createTestElement(options) {
         itemHeight: 30
     }, options);
     var testContainer = $('#test');
-    var list = $('<div data-bind="list: items"></div>');
+    var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex }"></div>');
     list.height(options.listHeight);
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
