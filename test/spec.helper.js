@@ -16,10 +16,13 @@ function createTestElement(options) {
     return list.get(0);
 }
 
+function scrollTo(element, top) {
+    element.scrollTop = top;
+    $(element).trigger('scroll');
+}
 
 function scrollToBottom(element) {
-    element.scrollTop = element.scrollHeight;
-    $(element).trigger('scroll');
+    scrollTo(element, element.scrollHeight);
 }
 
 var expect = window.weknowhow.expect;

@@ -104,6 +104,21 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 ]);
             });
 
+            describe('and the viewport is scrolled to element 20', function () {
+                beforeEach(function () {
+                    scrollTo(element, 20 * itemHeight);
+                });
+
+                it('has tiles item17 to item25', function () {
+                    clock.tick(110);
+                    expect(element, 'to only have tiles', [
+                        '#item17', '#item18', '#item19',
+                        '#item20', '#item21', '#item22',
+                        '#item23', '#item24', '#item25'
+                    ]);
+                });
+            });
+
             describe('and the viewport is scrolled to the bottom', function () {
                 beforeEach(function () {
                     scrollToBottom(element);
