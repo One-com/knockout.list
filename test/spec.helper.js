@@ -1,13 +1,13 @@
 /*global $, afterEach*/
 function createTestElement(options) {
-    options = $.extend({}, options || {}, {
-        height: 60,
+    options = $.extend({
+        listHeight: 60,
         itemHeight: 30
-    });
+    }, options);
     var testContainer = $('#test');
     var list = $('<div data-bind="list: items"></div>');
-    list.height(options.height);
-    var item = $('<div data-bind="text: $data"></div>');
+    list.height(options.listHeight);
+    var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
     list.append(item);
 
@@ -16,29 +16,53 @@ function createTestElement(options) {
     return list.get(0);
 }
 
-afterEach(function () {
-    //$('#test').empty();
-});
 
-function createItems(size) {
-    var result = [];
-
-    for (var i = 0; i < size; i += 1) {
-        result.push('item' + i);
-    }
-    return result;
+function scrollToBottom(element) {
+    element.scrollTop = element.scrollHeight;
+    $(element).trigger('scroll');
 }
 
 var expect = window.weknowhow.expect;
+var factory = window.weknowhow.factory;
 
-expect.addAssertion('has number tiles', function (value) {
-    this.assert($('.tile', this.obj).length === value);
+var itemFactory = factory(function () {
+    return 'item' + this.sequence();
 });
 
-expect.addAssertion('has scroll height', function (value) {
-    this.assert(this.obj.scrollHeight === value);
+afterEach(function () {
+    $('#test').empty();
+    itemFactory.reset();
 });
 
-expect.addAssertion('has content height', function (value) {
-    this.assert($('.stretcher', this.obj)[0].scrollHeight === value);
+expect.addAssertion('to have number of tiles', function (value) {
+    var numberOfTiles = $('.tile', this.obj).length;
+    if (numberOfTiles !== value) {
+        throw new Error('expected element to have ' + value + ' tiles but it have ' + numberOfTiles + ' tiles');
+    }
+});
+
+expect.addAssertion('to have scroll height', function (value) {
+    var scrollHeight = this.obj.scrollHeight;
+    if (scrollHeight !== value) {
+        throw new Error('expected element to have scroll height ' + value + ' but was ' + scrollHeight);
+    }
+});
+
+expect.addAssertion('to have content height', function (value) {
+    var contentHeight = $('.stretcher', this.obj).height();
+    if (contentHeight !== value) {
+        throw new Error('expected element to have content height ' + value + ' but was ' + contentHeight);
+    }
+});
+
+expect.addAssertion('to [only] have tiles', function (tileSelectors) {
+    var element = this.obj;
+    tileSelectors.forEach(function (tileSelector) {
+        if ($(tileSelector, element).length === 0) {
+            throw new Error('expected element to have tiles "' + tileSelectors.join(', ') + '" but tile "' + tileSelector + '" was not found');
+        }
+    });
+    if (this.flags.only) {
+        expect(element, 'to have number of tiles', tileSelectors.length);
+    }
 });
