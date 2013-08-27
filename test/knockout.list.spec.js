@@ -100,11 +100,12 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
             it('has tiles item0 to item5', function () {
                 expect(element, 'to only have tiles', [
-                    '#item0', '#item1', '#item2', '#item3', '#item4', '#item5'
+                    '#item0', '#item1', '#item2',
+                    '#item3', '#item4', '#item5'
                 ]);
             });
 
-            describe('and the viewport is scrolled to element 20', function () {
+            describe('and the viewport is scrolled to item 20', function () {
                 beforeEach(function () {
                     scrollTo(element, 20 * itemHeight);
                 });
@@ -115,6 +116,22 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                         '#item17', '#item18', '#item19',
                         '#item20', '#item21', '#item22',
                         '#item23', '#item24', '#item25'
+                    ]);
+                });
+            });
+
+            describe('and the viewport is scrolled to item 20 and back to item 10', function () {
+                beforeEach(function () {
+                    scrollTo(element, 20 * itemHeight);
+                    scrollTo(element, 10 * itemHeight);
+                });
+
+                it('has tiles item7 to item16', function () {
+                    clock.tick(110);
+                    expect(element, 'to only have tiles', [
+                        '#item7', '#item8', '#item9',
+                        '#item10', '#item11', '#item12',
+                        '#item13', '#item14', '#item15'
                     ]);
                 });
             });
