@@ -1,4 +1,4 @@
-/*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $*/
+/*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $, tileRange*/
 var itemHeight = 30;
 var listHeight = itemHeight * 3;
 describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px', function () {
@@ -32,7 +32,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 expect(element, 'to have scroll height', listHeight);
             });
 
-            it('has content height', function () {
+            it('has content height equals to the height of all items', function () {
                 expect(element, 'to have content height', 0);
             });
         });
@@ -54,11 +54,11 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 expect(element, 'to have number of tiles', numberOfItems);
             });
 
-            it('has scroll height equal to container', function () {
+            it('has scroll height equals to the height of all items', function () {
                 expect(element, 'to have scroll height', numberOfItems * itemHeight);
             });
 
-            it('has content height', function () {
+            it('has content height equals to the height of all items', function () {
                 expect(element, 'to have content height', numberOfItems * itemHeight);
             });
 
@@ -88,7 +88,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             beforeEach(function () {
                 model = {
                     items: ko.observableArray(itemFactory.create(numberOfItems)),
-                    visibleIndex: ko.observable(0)
+                    visibleIndex: ko.observable(0).extend({ notify: 'always' })
                 };
                 element = createTestElement({
                     listHeight: listHeight,
@@ -97,23 +97,16 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 ko.applyBindings(model, element);
             });
 
-            it('renders ' + (listHeight / itemHeight * 2) + ' tiles', function () {
-                expect(element, 'to have number of tiles', (listHeight / itemHeight * 2));
-            });
-
-            it('has scroll height equal to container', function () {
+            it('has scroll height equals to the height of all items', function () {
                 expect(element, 'to have scroll height', numberOfItems * itemHeight);
             });
 
-            it('has content height', function () {
+            it('has content height equals to the height of all items', function () {
                 expect(element, 'to have content height', numberOfItems * itemHeight);
             });
 
             it('has tiles item0 to item5', function () {
-                expect(element, 'to only have tiles', [
-                    '#item0', '#item1', '#item2',
-                    '#item3', '#item4', '#item5'
-                ]);
+                expect(element, 'to only have tiles', tileRange(0, 5));
             });
 
             it('has no overlapping tiles', function () {
@@ -127,11 +120,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
                 it('has tiles item17 to item25', function () {
                     clock.tick(110);
-                    expect(element, 'to only have tiles', [
-                        '#item17', '#item18', '#item19',
-                        '#item20', '#item21', '#item22',
-                        '#item23', '#item24', '#item25'
-                    ]);
+                    expect(element, 'to only have tiles', tileRange(17, 25));
                 });
 
                 it('has no overlapping tiles', function () {
@@ -147,11 +136,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has tiles item7 to item16', function () {
-                    expect(element, 'to only have tiles', [
-                        '#item7', '#item8', '#item9',
-                        '#item10', '#item11', '#item12',
-                        '#item13', '#item14', '#item15'
-                    ]);
+                    expect(element, 'to only have tiles', tileRange(7, 15));
                 });
 
                 it('has no overlapping tiles', function () {
@@ -166,10 +151,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has tiles item94 to item99', function () {
-                    expect(element, 'to only have tiles', [
-                        '#item94', '#item95', '#item96',
-                        '#item97', '#item98', '#item99'
-                    ]);
+                    expect(element, 'to only have tiles', tileRange(94, 99));
                 });
 
                 it('has no overlapping tiles', function () {
@@ -186,17 +168,39 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has tiles item95 to item100', function () {
-                    expect(element, 'to only have tiles', [
-                        '#item95', '#item96', '#item97',
-                        '#item98', '#item99', '#item100'
-                    ]);
+                    expect(element, 'to only have tiles', tileRange(95, 100));
                 });
 
-                it('has scroll height equal to container', function () {
+                it('has scroll height equals to the height of all items', function () {
                     expect(element, 'to have scroll height', (numberOfItems + 1) * itemHeight);
                 });
 
-                it('has content height', function () {
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
+            });
+
+            describe('and a new item is added to the middle of the list that is outside of the render tiles', function () {
+                beforeEach(function () {
+                    model.items.splice(50, 0, itemFactory('newItem'));
+                    model.visibleIndex(50);
+                    $(element).trigger('scroll');
+                    clock.tick(110);
+                });
+
+                it('has tiles item45 to item53', function () {
+                    expect(element, 'to only have tiles', tileRange(45, 52).concat('#newItem'));
+                });
+
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has content height equals to the height of all items', function () {
                     expect(element, 'to have content height', (numberOfItems + 1) * itemHeight);
                 });
 

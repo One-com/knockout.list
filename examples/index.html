@@ -9,8 +9,14 @@
     <body>
       <div id="application">
         <div class="toolbar">
-          <form data-bind="submit: update">
-            <input type="number" step="10" min="10" max="500000" data-bind="value: itemCount">
+          <form data-bind="submit: update" class="items">
+            <label for="number-of-items">Number of items:</label>
+            <input name="number-of-items" type="number" step="10" min="10" max="500000" data-bind="value: itemCount">
+            <button type="submit">Update</button>
+          </form>
+          <form data-bind="submit: gotoItem" class="goto">
+            <label for="goto">Show item:</label>
+            <input name="goto" type="number" step="1" min="0" data-bind="attrs: { max: itemCount }, value: visibleIndex">
             <button type="submit">Update</button>
           </form>
         </div>

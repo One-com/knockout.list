@@ -25,11 +25,19 @@ function scrollToBottom(element) {
     scrollTo(element, element.scrollHeight);
 }
 
+function tileRange(from, to) {
+    var result = [];
+    for (var i = from; i <= to; i += 1) {
+        result.push('#item' + i);
+    }
+    return result;
+}
+
 var expect = window.weknowhow.expect;
 var factory = window.weknowhow.factory;
 
-var itemFactory = factory(function () {
-    return 'item' + this.sequence();
+var itemFactory = factory(function (name) {
+    return name || 'item' + this.sequence();
 });
 
 afterEach(function () {

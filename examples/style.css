@@ -1,6 +1,14 @@
 body {
 }
 
+form {
+    display: inline-block;
+}
+
+form.goto {
+    margin-left: 30px;
+}
+
 .toolbar {
     padding: 10px 10px;
 }
