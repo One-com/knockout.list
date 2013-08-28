@@ -69,3 +69,38 @@ expect.addAssertion('to [only] have tiles', function (tileSelectors) {
         expect(element, 'to have number of tiles', tileSelectors.length);
     }
 });
+
+
+expect.addAssertion('to have no gap or overlapping between tiles', function () {
+    var that = this;
+    function retrieveTileInfo(index, tileElement) {
+        var $tile = $(tileElement);
+        return {
+            id: $tile.find('> div').attr('id'),
+            top: parseInt($tile.css('top'), 10),
+            height: $tile.height()
+        };
+    }
+
+    function byTop(tile1, tile2) {
+        return tile1.top - tile2.top;
+    }
+
+    var lastTile;
+    var tiles = $('.tile', this.obj).map(retrieveTileInfo).get();
+    tiles.sort(byTop);
+    tiles.forEach(function (tile) {
+        if (lastTile) {
+            if (tile.top < lastTile.top + lastTile.height) {
+                throw new Error('expected element to have no overlapping tiles ' +
+                                'but the following tiles overlap: ' +
+                                that.inspect(lastTile) + ' and ' + that.inspect(tile));
+            } else if (tile.top > lastTile.top + lastTile.height) {
+                throw new Error('expected element to have no gaps between tiles ' +
+                                'but the following tiles have a gap between them: ' +
+                                that.inspect(lastTile) + ' and ' + that.inspect(tile));
+            }
+        }
+        lastTile = tile;
+    });
+});

@@ -62,6 +62,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 expect(element, 'to have content height', numberOfItems * itemHeight);
             });
 
+            it('has no overlapping tiles', function () {
+                expect(element, 'to have no gap or overlapping between tiles');
+            });
+
             describe('and the viewport is scrolled to the bottom', function () {
                 beforeEach(function () {
                     element.scrollTop = element.scrollHeight;
@@ -69,6 +73,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
                 it('still has ' + numberOfItems + ' tiles', function () {
                     expect(element, 'to have number of tiles', numberOfItems);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
         });
@@ -108,6 +116,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 ]);
             });
 
+            it('has no overlapping tiles', function () {
+                expect(element, 'to have no gap or overlapping between tiles');
+            });
+
             describe('and the viewport is scrolled to item 20', function () {
                 beforeEach(function () {
                     scrollTo(element, 20 * itemHeight);
@@ -120,6 +132,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                         '#item20', '#item21', '#item22',
                         '#item23', '#item24', '#item25'
                     ]);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -137,6 +153,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                         '#item13', '#item14', '#item15'
                     ]);
                 });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
             });
 
             describe('and the viewport is scrolled to the bottom', function () {
@@ -150,6 +170,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                         '#item94', '#item95', '#item96',
                         '#item97', '#item98', '#item99'
                     ]);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -174,6 +198,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
                 it('has content height', function () {
                     expect(element, 'to have content height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
         });
