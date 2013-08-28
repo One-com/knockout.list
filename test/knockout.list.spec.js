@@ -48,6 +48,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     itemHeight: itemHeight
                 });
                 ko.applyBindings(model, element);
+                clock.tick(110);
             });
 
             it('renders ' + numberOfItems + ' tiles', function () {
@@ -95,6 +96,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     itemHeight: itemHeight
                 });
                 ko.applyBindings(model, element);
+                clock.tick(110);
             });
 
             it('has scroll height equals to the height of all items', function () {
@@ -116,6 +118,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             describe('and the viewport is scrolled to item 20', function () {
                 beforeEach(function () {
                     scrollTo(element, 20 * itemHeight);
+                    clock.tick(110);
                 });
 
                 it('has tiles item17 to item25', function () {
