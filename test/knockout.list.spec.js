@@ -192,8 +192,32 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     clock.tick(110);
                 });
 
-                it('has tiles item45 to item53', function () {
+                it('has tiles item45 to item52 and the new item', function () {
                     expect(element, 'to only have tiles', tileRange(45, 52).concat('#newItem'));
+                });
+
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', (numberOfItems + 1) * itemHeight);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
+            });
+
+            describe('and a new item inside the viewport', function () {
+                beforeEach(function () {
+                    scrollTo(element, 50 * itemHeight);
+                    model.items.splice(51, 0, itemFactory('newItem'));
+                    clock.tick(110);
+                });
+
+                it('has tiles item47 to item54 and the new item', function () {
+                    expect(element, 'to only have tiles', tileRange(47, 54).concat('#newItem'));
                 });
 
                 it('has scroll height equals to the height of all items', function () {
