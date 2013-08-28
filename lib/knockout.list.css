@@ -1,10 +1,12 @@
 .knockout-list {
     overflow: auto;
     position: relative;
+    background-color: #f4f4f4;
 }
 
 .knockout-list > .tile {
     position: absolute;
     left: 0;
     right: 0;
+    background-color: white;
 }
