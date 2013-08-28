@@ -232,6 +232,32 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
+
+            describe('and items has just been sorted in the reverse direction', function () {
+                beforeEach(function () {
+                    scrollTo(element, 50 * itemHeight);
+                    model.items.sort(function (x, y) {
+                        return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
+                    });
+                    clock.tick(110);
+                });
+
+                it('has tiles item44 to item52 and the new item', function () {
+                    expect(element, 'to only have tiles', tileRange(44, 52));
+                });
+
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', numberOfItems * itemHeight);
+                });
+
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', numberOfItems * itemHeight);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
+            });
         });
     });
 });
