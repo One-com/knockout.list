@@ -26,7 +26,6 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             });
 
             it('renders no tiles', function () {
-                expect.fail('testing that the build will actually fail on travis');
                 expect(element, 'to have number of tiles', 0);
             });
 
