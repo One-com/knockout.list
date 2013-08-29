@@ -22,6 +22,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     itemHeight: itemHeight
                 });
                 ko.applyBindings(model, element);
+                clock.tick(110);
             });
 
             it('renders no tiles', function () {
@@ -165,6 +166,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             describe('and a new item is added to the bottom of the list that is outside of the render tiles', function () {
                 beforeEach(function () {
                     model.items.push(itemFactory());
+                    clock.tick(110);
                     model.visibleIndex(model.items().length - 1);
                     $(element).trigger('scroll');
                     clock.tick(110);
@@ -190,6 +192,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             describe('and a new item is added to the middle of the list that is outside of the render tiles', function () {
                 beforeEach(function () {
                     model.items.splice(50, 0, itemFactory('newItem'));
+                    clock.tick(110);
                     model.visibleIndex(50);
                     $(element).trigger('scroll');
                     clock.tick(110);
