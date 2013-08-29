@@ -17,14 +17,19 @@
         },
         length: function () {
             return itemCount();
-        }
+        },
+        visibleIndex: ko.observable(0).extend({notify: 'always'})
     };
 
     var viewModel = {
         itemCount: itemCount,
+        visibleIndex: ko.observable(0),
         dataSource: dataSource,
         update: function () {
             dataSource.notify();
+        },
+        gotoItem: function () {
+            dataSource.visibleIndex(this.visibleIndex());
         }
     };
     ko.applyBindings(viewModel, document.getElementById('application'));
