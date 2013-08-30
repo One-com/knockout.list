@@ -264,6 +264,31 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
+
+            describe('and the data is replaced', function () {
+                beforeEach(function () {
+                    scrollTo(element, 50 * itemHeight);
+                    clock.tick(110);
+                    model.items(itemFactory.create(100));
+                    clock.tick(110);
+                });
+
+                it('has tiles item147 to item155 and the new item', function () {
+                    expect(element, 'to only have tiles', tileRange(147, 155));
+                });
+
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', numberOfItems * itemHeight);
+                });
+
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', numberOfItems * itemHeight);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
+            });
         });
     });
 });
