@@ -3,8 +3,13 @@ var itemHeight = 30;
 var listHeight = itemHeight * 3;
 describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px', function () {
     var clock;
+    var element;
     beforeEach(function () {
         clock = sinon.useFakeTimers();
+        element = createTestElement({
+            listHeight: listHeight,
+            itemHeight: itemHeight
+        });
     });
 
     afterEach(function () {
@@ -13,14 +18,9 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
     describe('with an observable array as data source', function () {
         describe('when the data source is empty', function () {
-            var element;
             var model;
             beforeEach(function () {
                 model = { items: ko.observableArray() };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -39,15 +39,10 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
         });
 
         describe('when the data source is smaller then the eviction treshold of 100 items', function () {
-            var element;
             var model;
             var numberOfItems = 99;
             beforeEach(function () {
                 model = { items: ko.observableArray(itemFactory.create(numberOfItems)) };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -84,7 +79,6 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
         });
 
         describe('when the data source is larger then the eviction treshold of 100 items', function () {
-            var element;
             var model;
             var numberOfItems = 100;
             beforeEach(function () {
@@ -92,10 +86,6 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     items: ko.observableArray(itemFactory.create(numberOfItems)),
                     visibleIndex: ko.observable(0).extend({ notify: 'always' })
                 };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
