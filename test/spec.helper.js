@@ -52,6 +52,13 @@ expect.addAssertion('to have number of tiles', function (value) {
     }
 });
 
+expect.addAssertion('to have number of dividers', function (value) {
+    var numberOfDividers = $('.divider', this.obj).length;
+    if (numberOfDividers !== value) {
+        throw new Error('expected element to have ' + value + ' dividers but it have ' + numberOfDividers + ' dividers');
+    }
+});
+
 expect.addAssertion('to have scroll height', function (value) {
     var scrollHeight = this.obj.scrollHeight;
     if (scrollHeight !== value) {
@@ -79,7 +86,7 @@ expect.addAssertion('to [only] have tiles', function (tileSelectors) {
 });
 
 
-expect.addAssertion('to have no gap or overlapping between tiles', function () {
+expect.addAssertion('to have no gap or overlapping between tiles and dividers', function () {
     var that = this;
     function retrieveTileInfo(index, tileElement) {
         var $tile = $(tileElement);
@@ -89,26 +96,36 @@ expect.addAssertion('to have no gap or overlapping between tiles', function () {
             height: $tile.height()
         };
     }
-
-    function byTop(tile1, tile2) {
-        return tile1.top - tile2.top;
+    function retriveDividerInfo(index, dividerElement) {
+        var $divider = $(dividerElement);
+        return {
+            text: $divider.text(),
+            top: parseInt($divider.css('top'), 10),
+            height: $divider.height()
+        };
     }
 
-    var lastTile;
+    function byTop(element1, element2) {
+        return element1.top - element2.top;
+    }
+
+    var lastElement;
     var tiles = $('.tile', this.obj).map(retrieveTileInfo).get();
-    tiles.sort(byTop);
-    tiles.forEach(function (tile) {
-        if (lastTile) {
-            if (tile.top < lastTile.top + lastTile.height) {
-                throw new Error('expected element to have no overlapping tiles ' +
-                                'but the following tiles overlap: ' +
-                                that.inspect(lastTile) + ' and ' + that.inspect(tile));
-            } else if (tile.top > lastTile.top + lastTile.height) {
-                throw new Error('expected element to have no gaps between tiles ' +
-                                'but the following tiles have a gap between them: ' +
-                                that.inspect(lastTile) + ' and ' + that.inspect(tile));
+    var dividers = $('.divider', this.obj).map(retriveDividerInfo).get();
+    var elements = tiles.concat(dividers);
+    elements.sort(byTop);
+    elements.forEach(function (element) {
+        if (lastElement) {
+            if (element.top < lastElement.top + lastElement.height) {
+                throw new Error('expected element to have no overlapping children ' +
+                                'but the following children overlap: ' +
+                                that.inspect(lastElement) + ' and ' + that.inspect(element));
+            } else if (element.top > lastElement.top + lastElement.height) {
+                throw new Error('expected element to have no gaps between children ' +
+                                'but the following children have a gap between them: ' +
+                                that.inspect(lastElement) + ' and ' + that.inspect(element));
             }
         }
-        lastTile = tile;
+        lastElement = element;
     });
 });

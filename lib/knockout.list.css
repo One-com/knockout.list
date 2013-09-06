@@ -10,3 +10,10 @@
     right: 0;
     background-color: white;
 }
+
+.knockout-list > .divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+}
