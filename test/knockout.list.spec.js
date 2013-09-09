@@ -52,7 +52,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     expect(element, 'to have scroll height', listHeight);
                 });
 
-                it('has content height equals to the height of all items', function () {
+                it('has content height equals to the height of all dividers', function () {
                     expect(element, 'to have content height', dividerHeight * 3);
                 });
 
@@ -66,7 +66,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             var model;
             var numberOfItems = 99;
             beforeEach(function () {
-                model = { items: ko.observableArray(itemFactory.create(numberOfItems)) };
+                model = { items: ko.observableArray(itemFactory.create(numberOfItems)), dividers: ko.observable() };
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -99,7 +99,31 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 it('has no overlapping tiles', function () {
                     expect(element, 'to have no gap or overlapping between tiles and dividers');
                 });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    });
+                });
             });
+
         });
 
         describe('when the data source is larger then the eviction treshold of 100 items', function () {
