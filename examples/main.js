@@ -18,6 +18,17 @@
         length: function () {
             return itemCount();
         },
+        dividers: function () {
+            var length = this.length();
+            var steps = length < 1000 ? 10 : (length < 10000 ? 100 : 1000);
+
+            var result = {};
+
+            for (var i = 0; i < length; i += steps) {
+                result[i] = i + '-' + (Math.min(i + steps, length) - 1);
+            }
+            return result;
+        },
         visibleIndex: ko.observable(0).extend({notify: 'always'})
     };
 
