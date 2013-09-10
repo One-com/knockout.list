@@ -20,12 +20,17 @@ form.goto {
     right: 20px;
     bottom: 20px;
     border: thin solid #333;
+    background-color: #fbfbfb;
 }
 .list .tile {
     border-bottom: thin solid lightgray;
     font-size: 16px;
     padding: 12px 24px;
+    background-color: white;
 }
-.list .tile-loading {
+
+.list .divider {
+    padding: 6px 12px;
     border-bottom: thin solid lightgray;
+    background-color: #f0f0f0;
 }

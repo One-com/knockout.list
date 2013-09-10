@@ -1,10 +1,16 @@
 /*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $, tileRange*/
 var itemHeight = 30;
 var listHeight = itemHeight * 3;
-describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px', function () {
+var dividerHeight = 20;
+describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px and divider of height 20px', function () {
     var clock;
+    var element;
     beforeEach(function () {
         clock = sinon.useFakeTimers();
+        element = createTestElement({
+            listHeight: listHeight,
+            itemHeight: itemHeight
+        });
     });
 
     afterEach(function () {
@@ -13,14 +19,9 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
     describe('with an observable array as data source', function () {
         describe('when the data source is empty', function () {
-            var element;
             var model;
             beforeEach(function () {
-                model = { items: ko.observableArray() };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
+                model = { items: ko.observableArray(), dividers: ko.observable() };
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -36,18 +37,36 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             it('has content height equals to the height of all items', function () {
                 expect(element, 'to have content height', 0);
             });
+
+            describe('and it has 3 dividers', function () {
+                beforeEach(function () {
+                    model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                    clock.tick(110);
+                });
+
+                it('places all dividers sequential from the start of the list', function () {
+                    expect(element, 'to have number of dividers', 3);
+                });
+
+                it('has scroll height equal to container', function () {
+                    expect(element, 'to have scroll height', listHeight);
+                });
+
+                it('has content height equals to the height of all dividers', function () {
+                    expect(element, 'to have content height', dividerHeight * 3);
+                });
+
+                it('has no overlapping tiles', function () {
+                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                });
+            });
         });
 
         describe('when the data source is smaller then the eviction treshold of 100 items', function () {
-            var element;
             var model;
             var numberOfItems = 99;
             beforeEach(function () {
-                model = { items: ko.observableArray(itemFactory.create(numberOfItems)) };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
+                model = { items: ko.observableArray(itemFactory.create(numberOfItems)), dividers: ko.observable() };
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -80,22 +99,42 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 it('has no overlapping tiles', function () {
                     expect(element, 'to have no gap or overlapping between tiles');
                 });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    });
+                });
             });
+
         });
 
         describe('when the data source is larger then the eviction treshold of 100 items', function () {
-            var element;
             var model;
             var numberOfItems = 100;
             beforeEach(function () {
                 model = {
                     items: ko.observableArray(itemFactory.create(numberOfItems)),
-                    visibleIndex: ko.observable(0).extend({ notify: 'always' })
+                    visibleIndex: ko.observable(0).extend({ notify: 'always' }),
+                    dividers: ko.observable()
                 };
-                element = createTestElement({
-                    listHeight: listHeight,
-                    itemHeight: itemHeight
-                });
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -146,6 +185,29 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 it('has no overlapping tiles', function () {
                     expect(element, 'to have no gap or overlapping between tiles');
                 });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles');
+                    });
+                });
             });
 
             describe('and the viewport is scrolled to the bottom', function () {
@@ -160,6 +222,29 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
                 it('has no overlapping tiles', function () {
                     expect(element, 'to have no gap or overlapping between tiles');
+                });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 10: "A", 40: 'B', 95: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles');
+                    });
                 });
             });
 
@@ -290,5 +375,6 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
             });
         });
+
     });
 });
