@@ -84,7 +84,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             });
 
             it('has no overlapping tiles', function () {
-                expect(element, 'to have no gap or overlapping between tiles and dividers');
+                expect(element, 'to have no gap or overlapping between tiles');
             });
 
             describe('and the viewport is scrolled to the bottom', function () {
@@ -97,7 +97,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
 
                 describe('and it has 3 dividers', function () {
@@ -132,7 +132,8 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             beforeEach(function () {
                 model = {
                     items: ko.observableArray(itemFactory.create(numberOfItems)),
-                    visibleIndex: ko.observable(0).extend({ notify: 'always' })
+                    visibleIndex: ko.observable(0).extend({ notify: 'always' }),
+                    dividers: ko.observable()
                 };
                 ko.applyBindings(model, element);
                 clock.tick(110);
@@ -151,7 +152,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             });
 
             it('has no overlapping tiles', function () {
-                expect(element, 'to have no gap or overlapping between tiles and dividers');
+                expect(element, 'to have no gap or overlapping between tiles');
             });
 
             describe('and the viewport is scrolled to item 20', function () {
@@ -166,7 +167,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -182,7 +183,30 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
+                });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles');
+                    });
                 });
             });
 
@@ -197,7 +221,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -223,7 +247,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -249,7 +273,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -273,7 +297,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -299,7 +323,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
 
@@ -324,7 +348,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    expect(element, 'to have no gap or overlapping between tiles');
                 });
             });
         });
