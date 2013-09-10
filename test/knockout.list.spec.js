@@ -223,6 +223,29 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 it('has no overlapping tiles', function () {
                     expect(element, 'to have no gap or overlapping between tiles');
                 });
+
+                describe('and it has 3 dividers', function () {
+                    beforeEach(function () {
+                        model.dividers({ 10: "A", 40: 'B', 95: 'C' });
+                        clock.tick(110);
+                    });
+
+                    it('places all dividers sequential from the start of the list', function () {
+                        expect(element, 'to have number of dividers', 3);
+                    });
+
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items and dividers', function () {
+                        expect(element, 'to have content height', dividerHeight * 3 + numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles');
+                    });
+                });
             });
 
             describe('and a new item is added to the bottom of the list that is outside of the render tiles', function () {
