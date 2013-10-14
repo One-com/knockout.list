@@ -59,6 +59,13 @@ expect.addAssertion('to have number of dividers', function (value) {
     }
 });
 
+expect.addAssertion('to have scroll top', function (value) {
+    var scrollTop = this.obj.scrollTop;
+    if (scrollTop !== value) {
+        throw new Error('expected element to have scroll top ' + value + ' but was ' + scrollTop);
+    }
+});
+
 expect.addAssertion('to have scroll height', function (value) {
     var scrollHeight = this.obj.scrollHeight;
     if (scrollHeight !== value) {
