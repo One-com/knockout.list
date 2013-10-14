@@ -66,7 +66,11 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
             var model;
             var numberOfItems = 99;
             beforeEach(function () {
-                model = { items: ko.observableArray(itemFactory.create(numberOfItems)), dividers: ko.observable() };
+                model = {
+                    items: ko.observableArray(itemFactory.create(numberOfItems)),
+                    visibleIndex: ko.observable(0).extend({ notify: 'always' }),
+                    dividers: ko.observable()
+                };
                 ko.applyBindings(model, element);
                 clock.tick(110);
             });
@@ -120,6 +124,17 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
                     it('has no overlapping tiles', function () {
                         expect(element, 'to have no gap or overlapping between tiles and dividers');
+                    });
+                });
+
+                describe('and the visible index is set to the first item', function () {
+                    beforeEach(function () {
+                        model.visibleIndex(0);
+                        clock.tick(110);
+                    });
+
+                    it('scrolls the first item into view', function () {
+                        expect(element, 'to have scroll top', 0);
                     });
                 });
             });
