@@ -95,7 +95,7 @@ function retrieveTileInfo(index, tileElement) {
     };
 }
 
-function retriveDividerInfo(index, dividerElement) {
+function retrieveDividerInfo(index, dividerElement) {
     var $divider = $(dividerElement);
     return {
         text: $divider.text(),
@@ -128,7 +128,7 @@ function assertNoOverlappingAndGaps(elements) {
 
 expect.addAssertion('to have no gap or overlapping between tiles and dividers', function () {
     var tiles = $('.tile', this.obj).map(retrieveTileInfo).get();
-    var dividers = $('.divider', this.obj).map(retriveDividerInfo).get();
+    var dividers = $('.divider', this.obj).map(retrieveDividerInfo).get();
 
     var elements = tiles.concat(dividers);
     assertNoOverlappingAndGaps(elements);
@@ -140,7 +140,7 @@ expect.addAssertion('to have no gap or overlapping between tiles', function () {
     if (tiles.length > 0) {
         var firstTile = tiles[0];
         var lastTile = tiles[tiles.length - 1];
-        dividers = $('.divider', this.obj).map(retriveDividerInfo).get().filter(function (divider) {
+        dividers = $('.divider', this.obj).map(retrieveDividerInfo).get().filter(function (divider) {
             return firstTile.top <= divider.top && divider.top + divider.height <= lastTile.top + lastTile.height;
         });
     }
