@@ -2,7 +2,9 @@
 function createTestElement(options) {
     options = $.extend({
         listHeight: 60,
-        itemHeight: 30
+        listWidth: 160,
+        itemHeight: 30,
+        itemWidth: 50
     }, options);
     var testContainer = $('#test');
     var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers }"></div>');
@@ -19,13 +21,17 @@ function createTestElement(options) {
 function createTestGridElement(options) {
     options = $.extend({
         listHeight: 60,
-        itemHeight: 30
+        listWidth: 160,
+        itemHeight: 30,
+        itemWidth: 50
     }, options);
     var testContainer = $('#test');
     var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, grid: true }"></div>');
     list.height(options.listHeight);
+    list.width(options.listWidth);
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
+    item.width(options.itemWidth);
     list.append(item);
 
     testContainer.append(list);
