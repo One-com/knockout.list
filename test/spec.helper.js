@@ -115,6 +115,7 @@ function retrieveTileInfo(index, tileElement) {
     return {
         id: $tile.find('> div').attr('id'),
         top: parseInt($tile.css('top'), 10),
+        left: parseInt($tile.css('left'), 10),
         height: $tile.height()
     };
 }
@@ -129,11 +130,15 @@ function retrieveDividerInfo(index, dividerElement) {
 }
 
 function assertNoOverlappingAndGaps(elements) {
-    function byTop(element1, element2) {
-        return element1.top - element2.top;
+    function byTopAndLeft(element1, element2) {
+        if (element1.top !== element2.top) {
+            return element1.top - element2.top;
+        } else {
+            return element1.left - element2.left;
+        }
     }
     var lastElement;
-    elements.sort(byTop);
+    elements.sort(byTopAndLeft);
     elements.forEach(function (element) {
         if (lastElement) {
             if (element.top < lastElement.top + lastElement.height) {
