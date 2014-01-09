@@ -125,6 +125,7 @@ function retrieveDividerInfo(index, dividerElement) {
     return {
         text: $divider.text(),
         top: parseInt($divider.css('top'), 10),
+        left: parseInt($divider.css('left'), 10),
         height: $divider.height()
     };
 }
