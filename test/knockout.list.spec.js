@@ -395,14 +395,17 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 });
 
 var itemWidth = 50;
+var listWidth = 160;
+var tilesSideBySide = Math.floor(listWidth / itemWidth);
 
-describe('knockout.list (grid mode) with height ' + listHeight + 'px, items of height ' + itemHeight + 'px and width ' + itemWidth + ',  divider of height 20px', function () {
+describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWidth + 'px, items of height ' + itemHeight + 'px and width ' + itemWidth + 'px, divider of height 20px', function () {
     var clock;
     var element;
     beforeEach(function () {
         clock = sinon.useFakeTimers();
         element = createTestGridElement({
             listHeight: listHeight,
+            listWidth: listWidth,
             itemHeight: itemHeight,
             itemWidth: itemWidth
         });
