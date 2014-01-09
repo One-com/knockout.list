@@ -71,14 +71,14 @@ afterEach(function () {
 expect.addAssertion('to have number of tiles', function (value) {
     var numberOfTiles = $('.tile', this.obj).length;
     if (numberOfTiles !== value) {
-        throw new Error('expected element to have ' + value + ' tiles but it have ' + numberOfTiles + ' tiles');
+        throw new Error('expected element to have ' + value + ' tiles but it has ' + numberOfTiles + ' tiles');
     }
 });
 
 expect.addAssertion('to have number of dividers', function (value) {
     var numberOfDividers = $('.divider', this.obj).length;
     if (numberOfDividers !== value) {
-        throw new Error('expected element to have ' + value + ' dividers but it have ' + numberOfDividers + ' dividers');
+        throw new Error('expected element to have ' + value + ' dividers but it has ' + numberOfDividers + ' dividers');
     }
 });
 
