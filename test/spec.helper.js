@@ -16,6 +16,23 @@ function createTestElement(options) {
     return list.get(0);
 }
 
+function createTestGridElement(options) {
+    options = $.extend({
+        listHeight: 60,
+        itemHeight: 30
+    }, options);
+    var testContainer = $('#test');
+    var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, grid: true }"></div>');
+    list.height(options.listHeight);
+    var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
+    item.height(options.itemHeight);
+    list.append(item);
+
+    testContainer.append(list);
+
+    return list.get(0);
+}
+
 function scrollTo(element, top) {
     element.scrollTop = top;
     $(element).trigger('scroll');

@@ -393,3 +393,23 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 
     });
 });
+
+var itemWidth = 50;
+
+describe('knockout.list (grid mode) with height ' + listHeight + 'px, items of height ' + itemHeight + 'px and width ' + itemWidth + ',  divider of height 20px', function () {
+    var clock;
+    var element;
+    beforeEach(function () {
+        clock = sinon.useFakeTimers();
+        element = createTestGridElement({
+            listHeight: listHeight,
+            itemHeight: itemHeight,
+            itemWidth: itemWidth
+        });
+    });
+
+    afterEach(function () {
+        clock.restore();
+    });
+});
+
