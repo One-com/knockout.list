@@ -142,11 +142,13 @@ function assertNoOverlappingAndGaps(elements) {
     elements.sort(byTopAndLeft);
     elements.forEach(function (element) {
         if (lastElement) {
-            if (element.top < lastElement.top + lastElement.height) {
+            if (element.top < lastElement.top + lastElement.height &&
+                element.left < lastElement.left + lastElement.width) {
                 throw new Error('expected element to have no overlapping children ' +
                                 'but the following children overlap: ' +
                                 expect.inspect(lastElement) + ' and ' + expect.inspect(element));
-            } else if (element.top > lastElement.top + lastElement.height) {
+            } else if (element.top > lastElement.top + lastElement.height &&
+                element.left > lastElement.left + lastElement.width) {
                 throw new Error('expected element to have no gaps between children ' +
                                 'but the following children have a gap between them: ' +
                                 expect.inspect(lastElement) + ' and ' + expect.inspect(element));
