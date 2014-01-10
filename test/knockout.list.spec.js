@@ -681,14 +681,12 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                     expect(element, 'to only have tiles', tileRange(84, 100));
                 });
 
-                it.skip('has scroll height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have scroll height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
-                it.skip('has content height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have content height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
                 it('has no overlapping tiles', function () {
@@ -697,6 +695,7 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
             });
 
             describe('and a new item is added to the middle of the list that is outside of the render tiles', function () {
+                // TODO: make sure the item is added on the next row, not in an already existing row
                 beforeEach(function () {
                     model.items.splice(50, 0, itemFactory('newItem'));
                     clock.tick(110);
@@ -709,14 +708,12 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                     expect(element, 'to only have tiles', tileRange(33, 58).concat('#newItem'));
                 });
 
-                it.skip('has scroll height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have scroll height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
-                it.skip('has content height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have content height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
                 it('has no overlapping tiles', function () {
@@ -725,6 +722,7 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
             });
 
             describe('and a new item is added inside the viewport', function () {
+                // TODO: make sure the item is added on the next row, not in an already existing row
                 beforeEach(function () {
                     scrollTo(element, Math.ceil(50 / tilesSideBySide) * itemHeight);
                     model.items.splice(51, 0, itemFactory('newItem'));
@@ -735,14 +733,12 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                     expect(element, 'to only have tiles', tileRange(42, 67).concat('#newItem'));
                 });
 
-                it.skip('has scroll height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have scroll height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has scroll height equals to the height of all items', function () {
+                    expect(element, 'to have scroll height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
-                it.skip('has content height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                    expect(element, 'to have content height', (Math.ceil(numberOfItems / tilesSideBySide) + 1) * itemHeight);
+                it('has content height equals to the height of all items', function () {
+                    expect(element, 'to have content height', (Math.ceil((numberOfItems + 1) / tilesSideBySide)) * itemHeight);
                 });
 
                 it('has no overlapping tiles', function () {
