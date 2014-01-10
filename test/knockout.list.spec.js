@@ -759,13 +759,11 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                     expect(element, 'to only have tiles', tileRange(31, 57));
                 });
 
-                it.skip('has scroll height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
+                it('has scroll height equals to the height of all items', function () {
                     expect(element, 'to have scroll height', Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
                 });
 
-                it.skip('has content height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
+                it('has content height equals to the height of all items', function () {
                     expect(element, 'to have content height', Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
                 });
 
@@ -786,13 +784,11 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                     expect(element, 'to only have tiles', tileRange(142, 168));
                 });
 
-                it.skip('has scroll height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
+                it('has scroll height equals to the height of all items', function () {
                     expect(element, 'to have scroll height', Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
                 });
 
-                it.skip('has content height equals to the height of all items', function () {
-                    // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
+                it('has content height equals to the height of all items', function () {
                     expect(element, 'to have content height', Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
                 });
 
