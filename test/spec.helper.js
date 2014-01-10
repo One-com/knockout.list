@@ -39,6 +39,19 @@ function createTestGridElement(options) {
     return list.get(0);
 }
 
+function calculateNumViewIndexes (length, dividers, tilesSideBySide) {
+    var prevDividerIndex = 0,
+        indexOffset = 0;
+    Object.keys(dividers).forEach(function (dividerIndex) {
+        var indexesBetween = dividerIndex - prevDividerIndex,
+            maxIndexesBetween = Math.ceil(indexesBetween / tilesSideBySide) * tilesSideBySide;
+
+        prevDividerIndex = dividerIndex;
+        indexOffset += maxIndexesBetween - indexesBetween;
+    });
+    return length + indexOffset;
+}
+
 function scrollTo(element, top) {
     element.scrollTop = top;
     $(element).trigger('scroll');

@@ -512,14 +512,14 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                         expect(element, 'to have number of dividers', 3);
                     });
 
-                    it.skip('has scroll height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
-                    it.skip('has content height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has content height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
                     it('has no overlapping tiles', function () {
@@ -611,14 +611,14 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                         expect(element, 'to have number of dividers', 3);
                     });
 
-                    it.skip('has scroll height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
-                    it.skip('has content height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has content height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
                     it('has no overlapping tiles', function () {
@@ -651,14 +651,14 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                         expect(element, 'to have number of dividers', 3);
                     });
 
-                    it.skip('has scroll height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has scroll height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have scroll height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
-                    it.skip('has content height equals to the height of all items and dividers', function () {
-                        // TODO: calculate viewport index for numberOfItems, similar to calculateViewIndex
-                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numberOfItems / tilesSideBySide) * itemHeight);
+                    it('has content height equals to the height of all items and dividers', function () {
+                        var numViewIndexes = calculateNumViewIndexes(numberOfItems, model.dividers(), tilesSideBySide);
+                        expect(element, 'to have content height', dividerHeight * 3 + Math.ceil(numViewIndexes / tilesSideBySide) * itemHeight);
                     });
 
                     it('has no overlapping tiles', function () {
