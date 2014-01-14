@@ -3,6 +3,6 @@
     width: 200px;
 }
 
-.knockout-list > .tile {
+.list > .tile {
     transition: left 0.4s, top 0.4s;
 }
