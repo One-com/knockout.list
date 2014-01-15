@@ -1,4 +1,4 @@
-.knockout-list {
+.knockout-list, .knockout-list-grid {
     overflow: auto;
     position: relative;
 }
@@ -9,7 +9,11 @@
     right: 0;
 }
 
-.knockout-list > .divider {
+.knockout-list-grid > .tile {
+    position: absolute;
+}
+
+.knockout-list > .divider, .knockout-list-grid > .divider {
     position: absolute;
     left: 0;
     right: 0;
