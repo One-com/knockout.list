@@ -19,3 +19,7 @@ Maximum element height in different browsers:
 * Chrome: 33555000px
 * IE 9/10: 1534000px
 * Firefox: 8949000px
+
+### Contributors
+
+* Maarten Winter (@mwoc)
