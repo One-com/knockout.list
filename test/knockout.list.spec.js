@@ -275,7 +275,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         model.items.push(itemFactory());
                         clock.tick(110);
                         model.visibleIndex(model.items().length - 1);
-                        $(element).trigger('scroll');
+                        $(scrollElement).trigger('scroll');
                         clock.tick(110);
                     });
 
@@ -301,7 +301,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         model.items.splice(50, 0, itemFactory('newItem'));
                         clock.tick(110);
                         model.visibleIndex(50);
-                        $(element).trigger('scroll');
+                        $(scrollElement).trigger('scroll');
                         clock.tick(110);
                     });
 
@@ -661,7 +661,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         model.items.push(itemFactory());
                         clock.tick(110);
                         model.visibleIndex(model.items().length - 1);
-                        $(element).trigger('scroll');
+                        $(scrollElement).trigger('scroll');
                         clock.tick(110);
                     });
 
@@ -687,7 +687,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         model.items.splice(50, 0, itemFactory('newItem'));
                         clock.tick(110);
                         model.visibleIndex(50);
-                        $(element).trigger('scroll');
+                        $(scrollElement).trigger('scroll');
                         clock.tick(110);
                     });
 
@@ -1095,7 +1095,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                     model.items.splice(50, 0, itemFactory('newItem'));
                     clock.tick(110);
                     model.visibleIndex(50);
-                    $(element).trigger('scroll');
+                    $(scrollElement).trigger('scroll');
                     clock.tick(110);
                 });
 
