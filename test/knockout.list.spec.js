@@ -586,7 +586,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         clock.tick(110);
                     });
 
-                    it('has tiles item7 to item16', function () {
+                    it('has tiles item7 to item15', function () {
                         expect(element, 'to only have tiles', tileRange(7, 15));
                     });
 
