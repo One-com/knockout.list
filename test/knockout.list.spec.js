@@ -555,8 +555,8 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     expect(element, 'to have content height', numberOfItems * itemHeight);
                 });
 
-                it('has tiles item0 to item5', function () {
-                    expect(element, 'to only have tiles', tileRange(0, 5));
+                it('has tiles item0 to item3', function () {
+                    expect(element, 'to only have tiles', tileRange(0, 3));
                 });
 
                 it('has no overlapping tiles', function () {
