@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/sunesimonsen/knockout.list.png?branch=master)](https://travis-ci.org/sunesimonsen/knockout.list)
 
-A list binding capable of scroll through many thousands of items by only loading data for the viewport.
+A list binding capable of scrolling through up to 500 thousand items, by only loading data for the viewport.
 
-Note this project is no where near finished, so please check back later.
+Note: This project is still in an early stage, so please use at own discretion.
 
 [Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/index.html)
 
@@ -51,11 +51,9 @@ If scrolling should take place in a parent of the bound element, this should be 
 
 ## Browser support
 
-This binding uses the native scrolling of the browser by creating a
-stretcher element the strech the list to show a scrollbar large enough
-to scroll through all elements in the list. This means that the
-maximum number of items that the list can contain is limited by the
-maximum height of an element the different browsers allow.
+This binding uses native scrolling of the browser, by creating a stretcher element which stretches the list, to show a scrollbar large enough to scroll to any element in the list.
+
+This means that the maximum number of items the list can contain is limited by the maximum height of an element the different browsers allow.
 
 Maximum element height in different browsers:
 
