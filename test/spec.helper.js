@@ -18,6 +18,33 @@ function createTestElement(options) {
     return list.get(0);
 }
 
+function createTestElementWithScrollableParent(options) {
+    options = $.extend({
+        listHeight: 60,
+        listWidth: 160,
+        itemHeight: 30,
+        itemWidth: 50,
+        offsetElementHeight: 40,
+        offsetElementWidth: 70
+    }, options);
+    var testContainer = $('#test');
+    testContainer.css('overflow', 'scroll');
+
+    var offsetElement = $('<div></div>');
+    offsetElement.height(options.offsetElementHeight);
+    offsetElement.width(options.offsetElementWidth);
+    var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, scrollable: \'#test\' }"></div>');
+    list.height(options.listHeight);
+    var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
+    item.height(options.itemHeight);
+    list.append(item);
+
+    testContainer.append(offsetElement);
+    testContainer.append(list);
+
+    return list.get(0);
+}
+
 function createTestGridElement(options) {
     options = $.extend({
         listHeight: 60,
