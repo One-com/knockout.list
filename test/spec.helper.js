@@ -1,14 +1,14 @@
 /*global $, afterEach*/
 function createTestElement(options) {
     options = $.extend({
-        listHeight: 60,
+        viewportHeight: 60,
         listWidth: 160,
         itemHeight: 30,
         itemWidth: 50
     }, options);
     var testContainer = $('#test');
     var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers }"></div>');
-    list.height(options.listHeight);
+    list.height(options.viewportHeight);
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
     list.append(item);
@@ -20,42 +20,46 @@ function createTestElement(options) {
 
 function createTestElementWithScrollableParent(options) {
     options = $.extend({
-        listHeight: 60,
-        listWidth: 160,
+        viewportHeight: 60,
+        viewportWidth: 160,
         itemHeight: 30,
         itemWidth: 50,
         offsetElementHeight: 40,
         offsetElementWidth: 70
     }, options);
     var testContainer = $('#test');
-    testContainer.css('overflow', 'scroll');
+
+    var scrollableParent = $('<div class="scrollable"></div>');
+    scrollableParent.css({'overflow': 'auto', 'position': 'absolute'});
+    scrollableParent.height(options.viewportHeight);
+    scrollableParent.width(options.viewportWidth);
 
     var offsetElement = $('<div></div>');
     offsetElement.height(options.offsetElementHeight);
     offsetElement.width(options.offsetElementWidth);
-    var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, scrollable: \'#test\' }"></div>');
-    list.height(options.listHeight);
+    var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, scrollable:  \'.scrollable\' }"></div>');
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
     list.append(item);
 
-    testContainer.append(offsetElement);
-    testContainer.append(list);
+    scrollableParent.append(offsetElement);
+    scrollableParent.append(list);
+    testContainer.append(scrollableParent);
 
     return list.get(0);
 }
 
 function createTestGridElement(options) {
     options = $.extend({
-        listHeight: 60,
-        listWidth: 160,
+        viewportHeight: 60,
+        viewportWidth: 160,
         itemHeight: 30,
         itemWidth: 50
     }, options);
     var testContainer = $('#test');
     var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, grid: true }"></div>');
-    list.height(options.listHeight);
-    list.width(options.listWidth);
+    list.height(options.viewportHeight);
+    list.width(options.viewportWidth);
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
     item.width(options.itemWidth);

@@ -1,9 +1,9 @@
 /*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $, tileRange*/
 var itemHeight = 30;
-var listHeight = itemHeight * 3;
+var viewportHeight = itemHeight * 3;
 var dividerHeight = 20;
 var offsetElementHeight = 40;
-describe('knockout.list with height ' + listHeight + 'px and items of height ' + itemHeight + 'px and divider of height 20px', function () {
+describe('knockout.list with height ' + viewportHeight + 'px and items of height ' + itemHeight + 'px and divider of height 20px', function () {
     var clock;
     var element;
     var scrollElement;
@@ -18,7 +18,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
     describe('scrolling through the same element as it is bound to', function () {
         beforeEach(function () {
             element = createTestElement({
-                listHeight: listHeight,
+                viewportHeight: viewportHeight,
                 itemHeight: itemHeight
             });
             scrollElement = element;
@@ -38,7 +38,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                 });
 
                 it('has scroll height equal to container', function () {
-                    expect(scrollElement, 'to have scroll height', listHeight);
+                    expect(scrollElement, 'to have scroll height', viewportHeight);
                 });
 
                 it('has content height equals to the height of all items', function () {
@@ -56,7 +56,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
                     });
 
                     it('has scroll height equal to container', function () {
-                        expect(scrollElement, 'to have scroll height', listHeight);
+                        expect(scrollElement, 'to have scroll height', viewportHeight);
                     });
 
                     it('has content height equals to the height of all dividers', function () {
@@ -403,7 +403,7 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
     describe('scrolling through parent of element it is bound to', function () {
         beforeEach(function () {
             element = createTestElementWithScrollableParent({
-                listHeight: listHeight,
+                viewportHeight: viewportHeight,
                 itemHeight: itemHeight,
                 offsetElementHeight: offsetElementHeight
             });
@@ -412,18 +412,18 @@ describe('knockout.list with height ' + listHeight + 'px and items of height ' +
 });
 
 var itemWidth = 50;
-var listWidth = 160;
-var tilesSideBySide = Math.floor(listWidth / itemWidth);
+var viewportWidth = 160;
+var tilesSideBySide = Math.floor(viewportWidth / itemWidth);
 
-describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWidth + 'px, items of height ' + itemHeight + 'px and width ' + itemWidth + 'px, divider of height 20px', function () {
+describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + viewportWidth + 'px, items of height ' + itemHeight + 'px and width ' + itemWidth + 'px, divider of height 20px', function () {
     var clock;
     var element;
     var scrollElement;
     beforeEach(function () {
         clock = sinon.useFakeTimers();
         element = createTestGridElement({
-            listHeight: listHeight,
-            listWidth: listWidth,
+            viewportHeight: viewportHeight,
+            viewportWidth: viewportWidth,
             itemHeight: itemHeight,
             itemWidth: itemWidth
         });
@@ -448,7 +448,7 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
             });
 
             it('has scroll height equal to container', function () {
-                expect(scrollElement, 'to have scroll height', listHeight);
+                expect(scrollElement, 'to have scroll height', viewportHeight);
             });
 
             it('has content height equals to the height of all items', function () {
@@ -466,7 +466,7 @@ describe('knockout.list grid with height ' + listHeight + 'px, width ' + listWid
                 });
 
                 it('has scroll height equal to container', function () {
-                    expect(scrollElement, 'to have scroll height', listHeight);
+                    expect(scrollElement, 'to have scroll height', viewportHeight);
                 });
 
                 it('has content height equals to the height of all dividers', function () {
