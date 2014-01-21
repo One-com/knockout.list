@@ -29,8 +29,7 @@
             }
             return result;
         },
-        visibleIndex: ko.observable(0).extend({notify: 'always'}),
-        scrollable: '.scrollable'
+        visibleIndex: ko.observable(0).extend({notify: 'always'})
     };
 
     var viewModel = {
