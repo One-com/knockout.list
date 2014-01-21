@@ -21,7 +21,7 @@
             <button type="submit">Update</button>
           </form>
         </div>
-        <div tabindex="-1" data-bind="list: dataSource" class="list">
+        <div tabindex="-1" data-bind="list: {dataSource: dataSource, grid: true}" class="list">
           <span data-bind="text: $data"></span>
         </div>
       </div>
@@ -29,6 +29,6 @@
       <script type="text/javascript" src="../vendor/jquery-1.8.1.js"></script>
       <script type="text/javascript" src="../vendor/knockout-2.2.0.debug.js"></script>
       <script type="text/javascript" src="../lib/knockout.list.js"></script>
-      <script type="text/javascript" src="grid.js"></script>
+      <script type="text/javascript" src="main.js"></script>
     </body>
 </html>
