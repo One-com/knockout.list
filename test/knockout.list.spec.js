@@ -565,7 +565,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
 
                 describe('and the viewport is scrolled to item 20', function () {
                     beforeEach(function () {
-                        scrollTo(scrollElement, 20 * itemHeight);
+                        scrollTo(scrollElement, 20 * itemHeight + offsetElementHeight);
                         clock.tick(110);
                     });
 
@@ -581,8 +581,8 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
 
                 describe('and the viewport is scrolled to item 20 and back to item 10', function () {
                     beforeEach(function () {
-                        scrollTo(scrollElement, 20 * itemHeight);
-                        scrollTo(scrollElement, 10 * itemHeight);
+                        scrollTo(scrollElement, 20 * itemHeight + offsetElementHeight);
+                        scrollTo(scrollElement, 10 * itemHeight + offsetElementHeight);
                         clock.tick(110);
                     });
 
@@ -710,7 +710,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
 
                 describe('and a new item inside the viewport', function () {
                     beforeEach(function () {
-                        scrollTo(scrollElement, 50 * itemHeight);
+                        scrollTo(scrollElement, 50 * itemHeight + offsetElementHeight);
                         model.items.splice(51, 0, itemFactory('newItem'));
                         clock.tick(110);
                     });
@@ -734,7 +734,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
 
                 describe('and items has just been sorted in the reverse direction', function () {
                     beforeEach(function () {
-                        scrollTo(scrollElement, 50 * itemHeight);
+                        scrollTo(scrollElement, 50 * itemHeight + offsetElementHeight);
                         model.items.sort(function (x, y) {
                             return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
                         });
@@ -760,7 +760,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
 
                 describe('and the data is replaced', function () {
                     beforeEach(function () {
-                        scrollTo(scrollElement, 50 * itemHeight);
+                        scrollTo(scrollElement, 50 * itemHeight + offsetElementHeight);
                         clock.tick(110);
                         model.items(itemFactory.create(100));
                         clock.tick(110);
