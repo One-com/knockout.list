@@ -24,7 +24,7 @@
           <div style="height: 500px; border: 1px solid gray;">
             <p>This area is part of a scrollable parent.<br>knockout.list takes the offset into account if you can read this.</p>
           </div>
-          <div tabindex="-1" data-bind="list: {data: dataSource, scrollable: '.scrollable'}">
+          <div tabindex="-1" data-bind="list: {data: dataSource, visibleIndex: visibleIndex, scrollable: '.scrollable'}">
             <span data-bind="text: $data"></span>
           </div>
         </div>

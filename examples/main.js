@@ -28,8 +28,7 @@
                 result[i] = i + '-' + (Math.min(i + steps, length) - 1);
             }
             return result;
-        },
-        visibleIndex: ko.observable(0).extend({notify: 'always'})
+        }
     };
 
     var viewModel = {
@@ -40,7 +39,8 @@
             dataSource.notify();
         },
         gotoItem: function () {
-            dataSource.visibleIndex(this.visibleIndex());
+            this.visibleIndex.valueHasMutated();
+            dataSource.notify();
         }
     };
     ko.applyBindings(viewModel, document.getElementById('application'));
