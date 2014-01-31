@@ -27,7 +27,7 @@ A required observable array that contains all items available to the list bindin
 
 An observable pointing to the index in `data` which should be visible. When updating this observable's value, knockout.list will try to scroll the requested index into view.
 
-### `dividers` \<observable\>
+### `dividers` \<observable\> or `data.dividers` \<observable\>
 
 An observable containing an object. The object keys specify before which `data` index a particular divider should be placed, the values which text to show in the divider.
 
