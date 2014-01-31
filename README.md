@@ -43,11 +43,15 @@ When false (default), tiles are placed below each other. All tiles are assumed t
 
 When true, knockout.list tries to position multiple tiles side-by-side. All tiles are assumed to have equal height and width.
 
+[Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/grid.html)
+
 ### `scrollable` \<string\>
 
 By default, knockout.list assumes that the element it is bound to, is scrollable.
 
 If scrolling should take place in a parent of the bound element, this should be done by providing a valid CSS selector here.
+
+[Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/scrollable.html)
 
 ## Browser support
 
