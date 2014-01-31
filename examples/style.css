@@ -13,6 +13,10 @@ form.goto {
     padding: 10px 10px;
 }
 
+.scrollable {
+    overflow: auto;
+}
+
 .list {
     position: absolute;
     top: 60px;

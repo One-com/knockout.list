@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <title>List Demo - Grid view</title>
+        <title>List Demo</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../lib/knockout.list.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="grid.css" type="text/css" media="screen" />
     </head>
     <body>
       <div id="application">
@@ -21,8 +20,13 @@
             <button type="submit">Update</button>
           </form>
         </div>
-        <div tabindex="-1" data-bind="list: {data: dataSource, grid: true}" class="list">
-          <span data-bind="text: $data"></span>
+        <div class="scrollable list">
+          <div style="height: 500px; border: 1px solid gray;">
+            <p>This area is part of a scrollable parent.<br>knockout.list takes the offset into account if you can read this.</p>
+          </div>
+          <div tabindex="-1" data-bind="list: {data: dataSource, visibleIndex: visibleIndex, scrollable: '.scrollable'}">
+            <span data-bind="text: $data"></span>
+          </div>
         </div>
       </div>
       <script type="text/javascript" src="../vendor/es5-shim.js"></script>
