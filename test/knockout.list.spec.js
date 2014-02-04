@@ -432,6 +432,22 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         });
                     });
                 }); // end visible index set to first item
+
+                describe('and the initial visible index is set to the last item', function () {
+                    beforeEach(function () {
+                        model.visibleIndex(99);
+                        ko.applyBindings(model, element);
+                        clock.tick(110);
+                    });
+
+                    it('scrolls the last item into view', function () {
+                        expect(scrollElement, 'to have scroll top', numberOfItems * itemHeight - viewportHeight);
+                    });
+
+                    it('has tiles item94 to item99', function () {
+                        expect(element, 'to only have tiles', tileRange(94, 99));
+                    });
+                });
             });
         });
     }); // end 'scrolling through the same element as it is bound to'
