@@ -72,34 +72,64 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
             describe('when the data source is smaller then the eviction treshold of 100 items', function () {
                 var model;
                 var numberOfItems = 99;
-                beforeEach(function () {
-                    model = {
-                        items: ko.observableArray(itemFactory.create(numberOfItems)),
-                        visibleIndex: ko.observable(0).extend({ notify: 'always' }),
-                        dividers: ko.observable()
-                    };
-                    ko.applyBindings(model, element);
-                    clock.tick(110);
+
+                describe('and the initial visible index is set to the first item', function () {
+                    beforeEach(function () {
+                        model = {
+                            items: ko.observableArray(itemFactory.create(numberOfItems)),
+                            visibleIndex: ko.observable(0).extend({ notify: 'always' }),
+                            dividers: ko.observable()
+                        };
+                        ko.applyBindings(model, element);
+                        clock.tick(110);
+                    });
+
+                    it('renders ' + numberOfItems + ' tiles', function () {
+                        expect(element, 'to have number of tiles', numberOfItems);
+                    });
+
+                    it('has scroll height equals to the height of all items', function () {
+                        expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight);
+                    });
+
+                    it('has content height equals to the height of all items', function () {
+                        expect(element, 'to have content height', numberOfItems * itemHeight);
+                    });
+
+                    it('has no overlapping tiles', function () {
+                        expect(element, 'to have no gap or overlapping between tiles');
+                    });
                 });
 
-                it('renders ' + numberOfItems + ' tiles', function () {
-                    expect(element, 'to have number of tiles', numberOfItems);
-                });
+                describe('and the initial visible index is set to the last item', function () {
+                    beforeEach(function () {
+                        model = {
+                            items: ko.observableArray(itemFactory.create(numberOfItems)),
+                            visibleIndex: ko.observable(99).extend({ notify: 'always' }),
+                            dividers: ko.observable()
+                        };
+                        ko.applyBindings(model, element);
+                        clock.tick(110);
+                    });
 
-                it('has scroll height equals to the height of all items', function () {
-                    expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight);
-                });
+                    it('scrolls the last item into view', function () {
+                        expect(scrollElement, 'to have scroll top', numberOfItems * itemHeight - viewportHeight);
+                    });
 
-                it('has content height equals to the height of all items', function () {
-                    expect(element, 'to have content height', numberOfItems * itemHeight);
-                });
-
-                it('has no overlapping tiles', function () {
-                    expect(element, 'to have no gap or overlapping between tiles');
+                    it('still has ' + numberOfItems + ' tiles', function () {
+                        expect(element, 'to have number of tiles', numberOfItems);
+                    });
                 });
 
                 describe('and the viewport is scrolled to the bottom', function () {
                     beforeEach(function () {
+                        model = {
+                            items: ko.observableArray(itemFactory.create(numberOfItems)),
+                            visibleIndex: ko.observable(0).extend({ notify: 'always' }),
+                            dividers: ko.observable()
+                        };
+                        ko.applyBindings(model, element);
+                        clock.tick(110);
                         scrollElement.scrollTop = element.scrollHeight;
                     });
 
