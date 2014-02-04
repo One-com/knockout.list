@@ -187,6 +187,11 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         visibleIndex: ko.observable(0).extend({ notify: 'always' }),
                         dividers: ko.observable()
                     };
+                });
+
+                describe('and the initial visible index is set to the first item', function () {
+                beforeEach(function () {
+                    model.visibleIndex(0);
                     ko.applyBindings(model, element);
                     clock.tick(110);
                 });
@@ -426,6 +431,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         expect(element, 'to have no gap or overlapping between tiles');
                     });
                 });
+                }); // end visible index set to first item
             });
         });
     }); // end 'scrolling through the same element as it is bound to'
