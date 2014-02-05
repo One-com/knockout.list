@@ -92,6 +92,10 @@ function scrollTo(element, top) {
     $(element).trigger('scroll');
 }
 
+function scrollToTop(element) {
+    scrollTo(element, 0);
+}
+
 function scrollToBottom(element) {
     scrollTo(element, element.scrollHeight);
 }
