@@ -130,7 +130,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         };
                         ko.applyBindings(model, element);
                         clock.tick(110);
-                        scrollElement.scrollTop = element.scrollHeight;
+                        scrollToBottom(scrollElement);
                     });
 
                     it('still has ' + numberOfItems + ' tiles', function () {
@@ -938,7 +938,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
 
             describe('and the viewport is scrolled to the bottom', function () {
                 beforeEach(function () {
-                    scrollElement.scrollTop = element.scrollHeight;
+                    scrollToBottom(scrollElement);
                 });
 
                 it('still has ' + numberOfItems + ' tiles', function () {
