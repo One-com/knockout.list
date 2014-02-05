@@ -494,7 +494,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equal to container', function () {
-                        expect(scrollElement, 'to have scroll height', dividerHeight * 3 + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', dividerHeight * 3 + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all dividers', function () {
@@ -525,7 +525,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                 });
 
                 it('has scroll height equals to the height of all items', function () {
-                    expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + offsetElementHeight);
+                    expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + 2 * offsetElementHeight);
                 });
 
                 it('has content height equals to the height of all items', function () {
@@ -560,7 +560,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         });
 
                         it('has scroll height equals to the height of all items and dividers', function () {
-                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + offsetElementHeight);
+                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + 2 * offsetElementHeight);
                         });
 
                         it('has content height equals to the height of all items and dividers', function () {
@@ -600,7 +600,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                 });
 
                 it('has scroll height equals to the height of all items', function () {
-                    expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + offsetElementHeight);
+                    expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + 2 * offsetElementHeight);
                 });
 
                 it('has content height equals to the height of all items', function () {
@@ -657,7 +657,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         });
 
                         it('has scroll height equals to the height of all items and dividers', function () {
-                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + offsetElementHeight);
+                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + 2 * offsetElementHeight);
                         });
 
                         it('has content height equals to the height of all items and dividers', function () {
@@ -676,8 +676,8 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         clock.tick(110);
                     });
 
-                    it('has tiles item94 to item99', function () {
-                        expect(element, 'to only have tiles', tileRange(94, 99));
+                    it('has tiles item95 to item99', function () {
+                        expect(element, 'to only have tiles', tileRange(95, 99));
                     });
 
                     it('has no overlapping tiles', function () {
@@ -695,7 +695,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         });
 
                         it('has scroll height equals to the height of all items and dividers', function () {
-                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + offsetElementHeight);
+                            expect(scrollElement, 'to have scroll height', dividerHeight * 3 + numberOfItems * itemHeight + 2 * offsetElementHeight);
                         });
 
                         it('has content height equals to the height of all items and dividers', function () {
@@ -722,7 +722,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equals to the height of all items', function () {
-                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all items', function () {
@@ -748,7 +748,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equals to the height of all items', function () {
-                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all items', function () {
@@ -772,7 +772,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equals to the height of all items', function () {
-                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', (numberOfItems + 1) * itemHeight + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all items', function () {
@@ -798,7 +798,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equals to the height of all items', function () {
-                        expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all items', function () {
@@ -823,7 +823,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     });
 
                     it('has scroll height equals to the height of all items', function () {
-                        expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + offsetElementHeight);
+                        expect(scrollElement, 'to have scroll height', numberOfItems * itemHeight + 2 * offsetElementHeight);
                     });
 
                     it('has content height equals to the height of all items', function () {
