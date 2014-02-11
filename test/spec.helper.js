@@ -34,16 +34,20 @@ function createTestElementWithScrollableParent(options) {
     scrollableParent.height(options.viewportHeight);
     scrollableParent.width(options.viewportWidth);
 
-    var offsetElement = $('<div></div>');
-    offsetElement.height(options.offsetElementHeight);
-    offsetElement.width(options.offsetElementWidth);
+    var offsetTopElement = $('<div></div>');
+    offsetTopElement.height(options.offsetElementHeight);
+    offsetTopElement.width(options.offsetElementWidth);
+    var offsetBottomElement = $('<div></div>');
+    offsetBottomElement.height(options.offsetElementHeight);
+    offsetBottomElement.width(options.offsetElementWidth);
     var list = $('<div data-bind="list: { data: items, visibleIndex: $data.visibleIndex, dividers: $data.dividers, scrollable:  \'.scrollable\' }"></div>');
     var item = $('<div data-bind="text: $data, attr: { id: $data }"></div>');
     item.height(options.itemHeight);
     list.append(item);
 
-    scrollableParent.append(offsetElement);
+    scrollableParent.append(offsetTopElement);
     scrollableParent.append(list);
+    scrollableParent.append(offsetBottomElement);
     testContainer.append(scrollableParent);
 
     return list.get(0);
@@ -86,6 +90,10 @@ function calculateNumViewIndexes (length, dividers, tilesSideBySide) {
 function scrollTo(element, top) {
     element.scrollTop = top;
     $(element).trigger('scroll');
+}
+
+function scrollToTop(element) {
+    scrollTo(element, 0);
 }
 
 function scrollToBottom(element) {
