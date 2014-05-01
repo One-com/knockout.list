@@ -1,4 +1,5 @@
 /*global describe, beforeEach, afterEach, createTestElement, ko, expect, it, itemFactory, scrollToBottom, sinon, $, tileRange*/
+/*global calculateNumViewIndexes, createTestElementWithScrollableParent, scrollToTop, createTestGridElement*/
 var itemHeight = 30;
 var viewportHeight = itemHeight * 3;
 var dividerHeight = 20;
@@ -1601,4 +1602,3 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
         });
     });
 });
-
