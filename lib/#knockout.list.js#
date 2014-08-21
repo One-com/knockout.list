@@ -359,8 +359,9 @@
                     // Initial render, or full re-render due to changes in datasource
                     dataSource.get(0, function (item) {
                         if (executionId < initialRenderIdGenerator.currentId) {
-                            return; // call was superseded
+                            // call was superseded
                         }
+
                         if (dataSource.length() === 0 ||
                             !ko.utils.domNodeIsAttachedToDocument(element)) {
                             return; // The data source has been emptied or the element got disconnected from the DOM
@@ -368,7 +369,7 @@
                         var $tile = renderTile(item, 0);
                         setTimeout(function () {
                             if (executionId < initialRenderIdGenerator.currentId) {
-                                return; // call was superseded
+                                // call was superseded
                             }
                             tileHeight = $tile.outerHeight();
                             tileWidth = $tile.outerWidth();
@@ -467,7 +468,8 @@
                 var executionId = renderViewPortIdGenerator.nextId();
                 calibrateHeight(function () {
                     if (executionId < renderViewPortIdGenerator.currentId) {
-                        return; // call was superseded
+                        // was superseded by a newer call to renderViewPort
+                        return;
                     }
 
                     if (isInitialRender && configuration.visibleIndex) {
