@@ -31,6 +31,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                 beforeEach(function () {
                     model = { items: ko.observableArray(), dividers: ko.observable() };
                     ko.applyBindings(model, element);
+                    clock.tick(1);
                 });
 
                 it('renders no tiles', function () {
@@ -48,6 +49,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                 describe('and it has 3 dividers', function () {
                     beforeEach(function () {
                         model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                        clock.tick(1);
                     });
 
                     it('places all dividers sequential from the start of the list', function () {
@@ -80,6 +82,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('renders ' + numberOfItems + ' tiles', function () {
@@ -107,6 +110,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('scrolls the last item into view', function () {
@@ -126,6 +130,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                         scrollToBottom(scrollElement);
                     });
 
@@ -140,6 +145,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     describe('and it has 3 dividers', function () {
                         beforeEach(function () {
                             model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                            clock.tick(1);
                         });
 
                         it('places all dividers sequential from the start of the list', function () {
@@ -187,6 +193,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     beforeEach(function () {
                         model.visibleIndex(0);
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('has scroll height equals to the height of all items', function () {
@@ -238,6 +245,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         describe('and it has 3 dividers', function () {
                             beforeEach(function () {
                                 model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                                clock.tick(1);
                             });
 
                             it('places all dividers sequential from the start of the list', function () {
@@ -275,6 +283,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         describe('and it has 3 dividers', function () {
                             beforeEach(function () {
                                 model.dividers({ 10: "A", 40: 'B', 95: 'C' });
+                                clock.tick(1);
                             });
 
                             it('places all dividers sequential from the start of the list', function () {
@@ -298,6 +307,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     describe('and a new item is added to the bottom of the list that is outside of the render tiles', function () {
                         beforeEach(function () {
                             model.items.push(itemFactory());
+                            clock.tick(1);
                             model.visibleIndex(model.items().length - 1);
                             $(scrollElement).trigger('scroll');
                             clock.tick(110);
@@ -349,6 +359,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         beforeEach(function () {
                             scrollTo(scrollElement, 50 * itemHeight);
                             model.items.splice(51, 0, itemFactory('newItem'));
+                            clock.tick(1);
                         });
 
                         it('has tiles item47 to item54 and the new item', function () {
@@ -374,6 +385,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             model.items.sort(function (x, y) {
                                 return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
                             });
+                            clock.tick(1);
                         });
 
                         it('has tiles item44 to item52 and the new item', function () {
@@ -398,6 +410,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             scrollTo(scrollElement, 50 * itemHeight);
                             clock.tick(110);
                             model.items(itemFactory.create(100));
+                            clock.tick(1);
                         });
 
                         it('has tiles item147 to item155 and the new item', function () {
@@ -422,6 +435,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     beforeEach(function () {
                         model.visibleIndex(99);
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('scrolls the last item into view', function () {
@@ -454,6 +468,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     beforeEach(function () {
                         model = { items: ko.observableArray(), dividers: ko.observable() };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('renders no tiles', function () {
@@ -471,6 +486,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     describe('and it has 3 dividers', function () {
                         beforeEach(function () {
                             model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                            clock.tick(1);
                         });
 
                         it('places all dividers sequential from the start of the list', function () {
@@ -501,6 +517,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('renders ' + numberOfItems + ' tiles', function () {
@@ -535,6 +552,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         describe('and it has 3 dividers', function () {
                             beforeEach(function () {
                                 model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                                clock.tick(1);
                             });
 
                             it('places all dividers sequential from the start of the list', function () {
@@ -577,6 +595,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('has scroll height equals to the height of all items', function () {
@@ -628,6 +647,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         describe('and it has 3 dividers', function () {
                             beforeEach(function () {
                                 model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                                clock.tick(1);
                             });
 
                             it('places all dividers sequential from the start of the list', function () {
@@ -665,6 +685,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         describe('and it has 3 dividers', function () {
                             beforeEach(function () {
                                 model.dividers({ 10: "A", 40: 'B', 95: 'C' });
+                                clock.tick(1);
                             });
 
                             it('places all dividers sequential from the start of the list', function () {
@@ -739,6 +760,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         beforeEach(function () {
                             scrollTo(scrollElement, 50 * itemHeight + offsetElementHeight);
                             model.items.splice(51, 0, itemFactory('newItem'));
+                            clock.tick(1);
                         });
 
                         it('has tiles item47 to item54 and the new item', function () {
@@ -764,6 +786,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             model.items.sort(function (x, y) {
                                 return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
                             });
+                            clock.tick(1);
                         });
 
                         it('has tiles item44 to item52 and the new item', function () {
@@ -788,6 +811,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             scrollTo(scrollElement, 50 * itemHeight + offsetElementHeight);
                             clock.tick(110);
                             model.items(itemFactory.create(100));
+                            clock.tick(1);
                         });
 
                         it('has tiles item147 to item155 and the new item', function () {
@@ -832,6 +856,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('renders ' + numberOfItems + ' tiles', function () {
@@ -853,6 +878,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     describe('and it has 3 dividers', function () {
                         beforeEach(function () {
                             model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                            clock.tick(1);
                         });
 
                         it('places all dividers sequential from the start of the list', function () {
@@ -931,6 +957,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             dividers: ko.observable()
                         };
                         ko.applyBindings(model, element);
+                        clock.tick(1);
                     });
 
                     it('has scroll height equals to the height of all items', function () {
@@ -952,6 +979,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                     describe('and it has 3 dividers', function () {
                         beforeEach(function () {
                             model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                            clock.tick(1);
                         });
 
                         it('places all dividers sequential from the start of the list', function () {
@@ -1078,6 +1106,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                         beforeEach(function () {
                             scrollTo(scrollElement, 50 * itemHeight + bigOffsetElementHeight);
                             model.items.splice(51, 0, itemFactory('newItem'));
+                            clock.tick(1);
                         });
 
                         it('has tiles item47 to item54 and the new item', function () {
@@ -1103,6 +1132,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             model.items.sort(function (x, y) {
                                 return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
                             });
+                            clock.tick(1);
                         });
 
                         it('has tiles item44 to item52 and the new item', function () {
@@ -1127,6 +1157,7 @@ describe('knockout.list with height ' + viewportHeight + 'px and items of height
                             scrollTo(scrollElement, 50 * itemHeight + bigOffsetElementHeight);
                             clock.tick(110);
                             model.items(itemFactory.create(100));
+                            clock.tick(1);
                         });
 
                         it('has tiles item147 to item155 and the new item', function () {
@@ -1181,6 +1212,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
             beforeEach(function () {
                 model = { items: ko.observableArray(), dividers: ko.observable() };
                 ko.applyBindings(model, element);
+                clock.tick(1);
             });
 
             it('renders no tiles', function () {
@@ -1198,6 +1230,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
             describe('and it has 3 dividers', function () {
                 beforeEach(function () {
                     model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                    clock.tick(1);
                 });
 
                 it('places all dividers sequential from the start of the list', function () {
@@ -1228,6 +1261,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                     dividers: ko.observable()
                 };
                 ko.applyBindings(model, element);
+                clock.tick(1);
             });
 
             it('renders ' + numberOfItems + ' tiles', function () {
@@ -1262,6 +1296,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                 describe('and it has 3 dividers', function () {
                     beforeEach(function () {
                         model.dividers({ 20: "A", 40: 'B', 60: 'C' });
+                        clock.tick(1);
                     });
 
                     it('places all dividers sequential from the start of the list', function () {
@@ -1306,6 +1341,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                     dividers: ko.observable()
                 };
                 ko.applyBindings(model, element);
+                clock.tick(1);
             });
 
             it('has scroll height equals to the height of all items', function () {
@@ -1357,6 +1393,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                 describe('and it has 3 dividers', function () {
                     beforeEach(function () {
                         model.dividers({ 10: "A", 40: 'B', 60: 'C' });
+                        clock.tick(1);
                     });
 
                     it('places all dividers sequential from the start of the list', function () {
@@ -1396,6 +1433,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                 describe('and it has 3 dividers', function () {
                     beforeEach(function () {
                         model.dividers({ 10: "A", 40: 'B', 95: 'C' });
+                        clock.tick(1);
                     });
 
                     it('places all dividers sequential from the start of the list', function () {
@@ -1475,6 +1513,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                 beforeEach(function () {
                     scrollTo(scrollElement, Math.ceil(50 / tilesSideBySide) * itemHeight);
                     model.items.splice(51, 0, itemFactory('newItem'));
+                    clock.tick(1);
                 });
 
                 it('has tiles item42 to item67 and the new item', function () {
@@ -1500,6 +1539,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                     model.items.sort(function (x, y) {
                         return parseInt(y.slice(4), 10) - parseInt(x.slice(4), 10);
                     });
+                    clock.tick(1);
                 });
 
                 it('has tiles item31 to item57 and the new item', function () {
@@ -1524,6 +1564,7 @@ describe('knockout.list grid with height ' + viewportHeight + 'px, width ' + vie
                     scrollTo(scrollElement, Math.ceil(50 / tilesSideBySide) * itemHeight);
                     clock.tick(110);
                     model.items(itemFactory.create(100));
+                    clock.tick(1);
                 });
 
                 it('has tiles item142 to item168 and the new item', function () {
