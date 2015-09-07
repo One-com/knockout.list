@@ -13,5 +13,10 @@
     "factory.js": "=0.0.6",
     "sinon": "~1.7.3"
   },
+  "bugs": "https://github.com/One-com/knockout.list/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/One-com/knockout.list"
+  },
   "license": "Apache-2.0"
 }
