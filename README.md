@@ -51,7 +51,7 @@ By default, knockout.list assumes that the element it is bound to, is scrollable
 
 If scrolling should take place in a parent of the bound element, this should be done by providing a valid CSS selector here.
 
-[Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/scrollable.html)
+[Click here to see an example](https://cdn.rawgit.com/One-com/knockout.list/master/examples/index.html)
 
 ## Browser support
 
