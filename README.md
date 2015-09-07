@@ -6,7 +6,7 @@ A list binding capable of scrolling through up to 500 thousand items, by only lo
 
 Note: This project is still in an early stage, so please use at own discretion.
 
-[Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/index.html)
+[Click here to see an example](https://cdn.rawgit.com/One-com/knockout.list/master/examples/index.html)
 
 ## Usage
 
@@ -43,7 +43,7 @@ When false (default), tiles are placed below each other. All tiles are assumed t
 
 When true, knockout.list tries to position multiple tiles side-by-side. All tiles are assumed to have equal height and width.
 
-[Click here to see an example](http://sunesimonsen.github.com/knockout.list/examples/grid.html)
+[Click here to see an example](https://cdn.rawgit.com/One-com/knockout.list/master/examples/grid.html)
 
 ### `scrollable` \<string\>
 
@@ -51,7 +51,8 @@ By default, knockout.list assumes that the element it is bound to, is scrollable
 
 If scrolling should take place in a parent of the bound element, this should be done by providing a valid CSS selector here.
 
-[Click here to see an example](https://cdn.rawgit.com/One-com/knockout.list/master/examples/index.html)
+[Click here to see an example](https://cdn.rawgit.com/One-com/knockout.list/master/examples/scrollable.html)
+
 
 ## Browser support
 
@@ -73,7 +74,7 @@ Maximum element height in different browsers:
 
 ```
 Copyright 2012 Sune Simonsen
-https://github.com/sunesimonsen/knockout.list
+https://github.com/One-com/knockout.list
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
