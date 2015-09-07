@@ -1,6 +1,6 @@
 ## knockout.list
 
-[![Build Status](https://travis-ci.org/sunesimonsen/knockout.list.png?branch=master)](https://travis-ci.org/sunesimonsen/knockout.list)
+[![Build Status](https://travis-ci.org/One-com/knockout.list.svg?branch=master)](https://travis-ci.org/One-com/knockout.list)
 
 A list binding capable of scrolling through up to 500 thousand items, by only loading data for the viewport.
 
